@@ -1,14 +1,22 @@
 import Listado from "./components/Listado/Listado"
-import Alert from "./components/Alert/Alert"
+import {BaseColaboradores} from "./BaseColaboradores"
+import { useState } from "react"
+
+
 
 
 const App = () => {
+  const [colaborador,setColaborador] = useState(BaseColaboradores)
+
+
   return (
     <>
-    <h1>hola mundo</h1>
-    <Listado/>
-    <Alert/>
-
+  
+    {colaborador.map(colaborador =>(
+         <Listado
+         colaborador ={colaborador}
+         />
+      ))}
 
     </>
   )
