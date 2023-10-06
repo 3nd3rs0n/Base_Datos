@@ -1,89 +1,96 @@
-import { useState } from "react"
+import React, { useState } from "react";
 
-const Formulario = () => {
-  const [nombre,setNombre] = useState("")
-  const [email,setEmail] = useState("")
-  const [edad,setEdad] = useState("")
-  const [cargo,setCargo] = useState("")
-  const [telefono,setTelefono] = useState("")
+const Formulario = ({ setColaboradores, colaboradores }) => {
+  const [nombre, setNombre] = useState("");
+  const [email, setEmail] = useState("");
+  const [edad, setEdad] = useState("");
+  const [cargo, setCargo] = useState("");
+  const [telefono, setTelefono] = useState("");
 
   const validarDatos = (e) => {
-    e.preventDefault()
-  }
+    e.preventDefault();
+    if (nombre && email && edad && cargo && telefono) {
+      const nuevoColaborador = {
+        nombre,
+        correo: email,
+        edad,
+        cargo,
+        telefono,
+      };
+
+      setColaboradores([...colaboradores, nuevoColaborador]);
 
 
+      setNombre("");
+      setEmail("");
+      setEdad("");
+      setCargo("");
+      setTelefono("");
+    } else {
+      alert("Por favor, complete todos los campos.");
+    }
+  };
 
   return (
     <>
-    <form 
-    className="d-flex flex-column gap-2"
-    onSubmit={validarDatos}>
-       
+      <form className="d-flex flex-column gap-2" onSubmit={validarDatos}>
         <div className="form-group">
-            <input 
+          <input
             type="text"
-            name="nombre" 
+            name="nombre"
             placeholder="Nombre completo"
             className="form-control shadow"
-            onChange={(e) => setNombre(e.target.value)} 
+            onChange={(e) => setNombre(e.target.value)}
             value={nombre}
-            />
+          />
         </div>
         <div className="form-group">
-            <input 
+          <input
             type="email"
-            name="email" 
+            name="email"
             placeholder="correo@correo.com"
             className="form-control shadow"
-            onChange={(e) => setEmail(e.target.value)}  
+            onChange={(e) => setEmail(e.target.value)}
             value={email}
-            />
+          />
         </div>
         <div className="form-group">
-            <input 
+          <input
             type="number"
-            name="edad" 
+            name="edad"
             placeholder="Edad"
-            className="form-control shadow" 
-            onChange={(e) => setEdad(e.target.value)} 
+            className="form-control shadow"
+            onChange={(e) => setEdad(e.target.value)}
             value={edad}
-            />
+          />
         </div>
         <div className="form-group">
-            <input 
+          <input
             type="text"
-            name="cargo" 
-            placeholder="cargo"
-            className="form-control shadow" 
-            onChange={(e) => setCargo(e.target.value)} 
+            name="cargo"
+            placeholder="Cargo"
+            className="form-control shadow"
+            onChange={(e) => setCargo(e.target.value)}
             value={cargo}
-            />
+          />
         </div>
         <div className="form-group">
-            <input 
-            type="number"
-            name="telefono" 
+          <input
+            type="tel"
+            name="telefono"
             placeholder="+56 9 ########"
-            className="form-control shadow" 
-            onChange={(e) => setTelefono(e.target.value)} 
+            className="form-control shadow"
+            onChange={(e) => setTelefono(e.target.value)}
             value={telefono}
-            />
+          />
         </div>
-        
-       
-        
-        
 
-        <button type="submit" className="btn-btn-success mt-3 rounded"> Agregar</button>
-
-
-   
-    </form>
-
-    
-
+        <button type="submit" className="btn btn-success mt-3 rounded">
+          Agregar
+        </button>
+      </form>
     </>
-  )
-}
+  );
+};
 
-export default Formulario
+export default Formulario;
