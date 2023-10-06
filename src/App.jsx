@@ -11,13 +11,13 @@ const App = () => {
 
   const agregarColaborador = (nuevoColaborador) => {
     setColaboradores([...colaboradores, nuevoColaborador]);
-    setAlerta({ mensaje: 'Colaborador agregado exitosamente', tipo: 'success' });
+    setAlerta({ mensaje: '¡Colaborador agregado!', tipo: 'success' });
   };
 
   const eliminarColaborador = (index) => {
     const nuevosColaboradores = colaboradores.filter((_, i) => i !== index);
     setColaboradores(nuevosColaboradores);
-    setAlerta({ mensaje: 'Colaborador eliminado exitosamente', tipo: 'success' });
+    setAlerta({ mensaje: '¡Colaborador eliminado!', tipo: 'success' });
   };
 
   return (
