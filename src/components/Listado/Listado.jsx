@@ -1,6 +1,6 @@
 import React from "react";
 
-const Listado = ({ colaborador }) => {
+const Listado = ({ colaborador, eliminarColaborador }) => {
   const { nombre, correo, edad, cargo, telefono } = colaborador;
 
   return (
@@ -10,6 +10,11 @@ const Listado = ({ colaborador }) => {
       <td>{edad}</td>
       <td>{cargo}</td>
       <td>{telefono}</td>
+      <td>
+        <button className="btn btn-danger" onClick={eliminarColaborador}>
+          Eliminar
+        </button>
+      </td>
     </tr>
   );
 };
