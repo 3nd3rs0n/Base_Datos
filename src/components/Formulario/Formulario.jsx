@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Formulario = ({ setColaboradores, colaboradores }) => {
+const Formulario = ({ agregarColaborador, setAlerta }) => {
   const [nombre, setNombre] = useState("");
   const [email, setEmail] = useState("");
   const [edad, setEdad] = useState("");
@@ -17,17 +17,15 @@ const Formulario = ({ setColaboradores, colaboradores }) => {
         cargo,
         telefono,
       };
-
-      setColaboradores([...colaboradores, nuevoColaborador]);
-
-
+      agregarColaborador(nuevoColaborador);
       setNombre("");
       setEmail("");
       setEdad("");
       setCargo("");
       setTelefono("");
+      setAlerta({ mensaje: 'Colaborador agregado', tipo: 'success' });
     } else {
-      alert("Por favor, complete todos los campos.");
+      setAlerta({ mensaje: 'Completa todos los camos', tipo: 'danger' });
     }
   };
 
@@ -84,7 +82,6 @@ const Formulario = ({ setColaboradores, colaboradores }) => {
             value={telefono}
           />
         </div>
-
         <button type="submit" className="btn btn-success mt-3 rounded">
           Agregar
         </button>

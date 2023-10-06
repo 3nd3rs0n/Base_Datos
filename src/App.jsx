@@ -1,10 +1,17 @@
 import React, { useState } from 'react';
 import Listado from "./components/Listado/Listado";
 import Formulario from "./components/Formulario/Formulario";
+import Alert from "./components/Alert/Alert";
 import { BaseColaboradores } from "./BaseColaboradores";
 
 const App = () => {
   const [colaboradores, setColaboradores] = useState(BaseColaboradores);
+  const [alerta, setAlerta] = useState(null);
+
+  const agregarColaborador = (nuevoColaborador) => {
+    setColaboradores([...colaboradores, nuevoColaborador]);
+    setAlerta({ mensaje: 'Colaborador agregado exitosamente', tipo: 'success' });
+  };
 
   return (
     <>
@@ -21,17 +28,12 @@ const App = () => {
           </thead>
           <tbody>
             {colaboradores.map((colaborador, index) => (
-              <tr key={index}>
-                <td>{colaborador.nombre}</td>
-                <td>{colaborador.correo}</td>
-                <td>{colaborador.edad}</td>
-                <td>{colaborador.cargo}</td>
-                <td>{colaborador.telefono}</td>
-              </tr>
+              <Listado key={index} colaborador={colaborador} />
             ))}
           </tbody>
         </table>
-        <Formulario setColaboradores={setColaboradores} colaboradores={colaboradores} />
+        <Formulario agregarColaborador={agregarColaborador} setAlerta={setAlerta} />
+        <Alert alerta={alerta} />
       </div>
     </>
   );
