@@ -21,10 +21,13 @@ const App = () => {
           </thead>
           <tbody>
             {colaboradores.map((colaborador, index) => (
-              <Listado
-                key={index}
-                colaborador={colaborador}
-              />
+              <tr key={index}>
+                <td>{colaborador.nombre}</td>
+                <td>{colaborador.correo}</td>
+                <td>{colaborador.edad}</td>
+                <td>{colaborador.cargo}</td>
+                <td>{colaborador.telefono}</td>
+              </tr>
             ))}
           </tbody>
         </table>
