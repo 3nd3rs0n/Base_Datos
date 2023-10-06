@@ -17,7 +17,7 @@ const App = () => {
   const eliminarColaborador = (index) => {
     const nuevosColaboradores = colaboradores.filter((_, i) => i !== index);
     setColaboradores(nuevosColaboradores);
-    setAlerta({ mensaje: '¡Colaborador eliminado!', tipo: 'success' });
+    setAlerta({ mensaje: '¡Colaborador eliminado!', tipo: 'danger' });
   };
 
   return (
