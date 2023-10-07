@@ -11,23 +11,27 @@ const App = () => {
 
   const agregarColaborador = (nuevoColaborador) => {
     setColaboradores([...colaboradores, nuevoColaborador]);
-    setAlerta({ mensaje: '¡Colaborador agregado!', tipo: 'success' });
+    setAlerta({ mensaje: 'Colaborador agregado exitosamente', tipo: 'success' });
   };
 
   const eliminarColaborador = (index) => {
     const nuevosColaboradores = colaboradores.filter((_, i) => i !== index);
     setColaboradores(nuevosColaboradores);
-    setAlerta({ mensaje: '¡Colaborador eliminado!', tipo: 'danger' });
+    setAlerta({ mensaje: 'Colaborador eliminado exitosamente', tipo: 'success' });
   };
 
   return (
-    <>
-      <div className="container">
-        <div className="row justify-content-center">
-          <div className="col-md-8">
-            <h1 className="text-center mt-5">Lista de Colaboradores</h1>
-            <Formulario agregarColaborador={agregarColaborador} setAlerta={setAlerta} />
-            <Buscador colaboradores={colaboradores} setColaboradores={setColaboradores} />
+    <div className="container mt-5">
+      <h1 className="text-center">Lista de Colaboradores</h1>
+      <div className="row">
+        <div className="col-lg-8 mx-auto">
+          <Formulario agregarColaborador={agregarColaborador} setAlerta={setAlerta} />
+          <Buscador colaboradores={colaboradores} setColaboradores={setColaboradores} />
+        </div>
+      </div>
+      <div className="row">
+        <div className="col-lg-12">
+          <div className="table-responsive">
             <table className="table table-bordered table-striped">
               <thead>
                 <tr>
@@ -35,8 +39,8 @@ const App = () => {
                   <th>Correo</th>
                   <th>Edad</th>
                   <th>Cargo</th>
-                  <th>Telefono</th>
-                  <th>Acciones</th> {}
+                  <th>Teléfono</th>
+                  <th>Acciones</th>
                 </tr>
               </thead>
               <tbody>
@@ -44,16 +48,16 @@ const App = () => {
                   <Listado
                     key={index}
                     colaborador={colaborador}
-                    eliminarColaborador={() => eliminarColaborador(index)} 
+                    eliminarColaborador={() => eliminarColaborador(index)}
                   />
                 ))}
               </tbody>
             </table>
-            <Alert alerta={alerta} />
           </div>
         </div>
       </div>
-    </>
+      <Alert alerta={alerta} />
+    </div>
   );
 };
 
